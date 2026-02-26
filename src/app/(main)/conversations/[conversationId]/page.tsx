@@ -42,6 +42,7 @@ import { MediaRoom } from "@/components/chat/MediaRoom";
 export default function ConversationPage() {
   const { user } = useUser();
   const { conversationId } = useParams();
+  const validId = conversationId as any;
   const router = useRouter();
   const scrollRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -59,11 +60,11 @@ export default function ConversationPage() {
 
   // Queries
   const conversation = useQuery(api.conversations.getConversation, { 
-    conversationId: conversationId as any,
+    conversationId: validId,
     clerkId: user?.id 
   });
-  const messages = useQuery(api.messages.getMessages, { conversationId: conversationId as any });
-  const typingUsers = useQuery(api.conversations.getTypingUsers, { conversationId: conversationId as any });
+  const messages = useQuery(api.messages.getMessages, { conversationId: validId });
+  const typingUsers = useQuery(api.conversations.getTypingUsers, { conversationId: validId });
   const currentUser = useQuery(api.users.getUser, { clerkId: user?.id || "" });
 
   // Mutations
@@ -85,10 +86,10 @@ export default function ConversationPage() {
     if (!user) return;
     let timeout: any;
     if (isTyping) {
-      setTyping({ clerkId: user.id, conversationId: conversationId as any, isTyping: true });
+      setTyping({ clerkId: user.id, conversationId: validId, isTyping: true });
       timeout = setTimeout(() => {
         setIsTyping(false);
-        setTyping({ clerkId: user.id, conversationId: conversationId as any, isTyping: false });
+        setTyping({ clerkId: user.id, conversationId: validId, isTyping: false });
       }, 3000);
     }
     return () => clearTimeout(timeout);
@@ -116,7 +117,7 @@ export default function ConversationPage() {
       } else {
         await sendMessage({
           clerkId: user.id,
-          conversationId: conversationId as any,
+          conversationId: validId,
           body: message.trim(),
           replyTo: replyingTo?._id,
         });
@@ -151,7 +152,7 @@ export default function ConversationPage() {
       // 3. Send message with storageID
       await sendMessage({
         clerkId: user.id,
-        conversationId: conversationId as any,
+        conversationId: validId,
         fileId: storageId,
         format: file.type.startsWith("image/") ? "image" : "file",
         body: "", // Empty body for file-only messages
@@ -200,7 +201,7 @@ export default function ConversationPage() {
   if (isVideoCall || isAudioCall) {
     return (
       <MediaRoom 
-        chatId={conversationId as string}
+        chatId={validId as string}
         video={isVideoCall}
         audio={true}
         onDisconnected={() => {
@@ -511,7 +512,7 @@ export default function ConversationPage() {
       <ChatInfoSheet 
         open={isInfoOpen} 
         onOpenChange={setIsInfoOpen} 
-        conversationId={conversationId} 
+        conversationId={validId} 
         conversation={conversation}
         chatName={chatName}
         chatImage={chatImage}
