@@ -4,6 +4,8 @@ import { WebhookEvent } from '@clerk/nextjs/server'
 import { fetchMutation } from "convex/nextjs";
 import { api } from "../../../../../convex/_generated/api";
 
+// Force rebuild v2
+
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
