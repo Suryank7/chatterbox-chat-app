@@ -2,12 +2,15 @@
 A next-generation real-time communication platform built for seamless private and group collaboration.
 
 ## 🌟 Features
-- **Real-Time Messaging**: Built on Convex WebSockets for zero-latency messaging.
-- **Glassmorphism UI**: Beautiful, dark-mode first design utilizing Tailwind CSS v4 and shadcn/ui.
-- **Typing Indicators**: Live typing status synced across all group members.
-- **Smart Timestamps**: Context-aware timestamp formatting logic.
-- **User Discovery**: Global directory to find and connect with other users instantaneously.
-- **Group Chats**: Create collaborative spaces with multiple peers.
+- **Real-Time Messaging**: Built on Convex WebSockets for zero-latency communication.
+- **Media & File Sharing**: Support for uploading images and documents directly within the chat.
+- **Visual Intelligence**: Lateral message alignment, directional bubble tails, and hover animations for clear distinction.
+- **Group Collaboration**: Robust group chat creation and participant management.
+- **Message Management**: Secure message deletion for users and admins with full attribution.
+- **Video & Audio Calls**: Integrated high-quality media rooms powered by LiveKit.
+- **Dynamic Themes**: Full support for Light, Dark, and System modes via the Settings Center.
+- **User Presence**: Live typing indicators and online status tracking.
+- **Smart UI**: Resizable layouts and context-aware timestamping.
 
 ---
 
