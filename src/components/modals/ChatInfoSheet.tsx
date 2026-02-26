@@ -1,4 +1,5 @@
 "use client";
+// Force rebuild v3
 
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -21,10 +22,11 @@ interface ChatInfoSheetProps {
 
 export const ChatInfoSheet = ({ open, onOpenChange, conversationId, conversation, chatName, chatImage }: ChatInfoSheetProps) => {
   const [activeTab, setActiveTab] = useState<"info" | "media" | "links">("info");
+  const validId = conversationId as any;
   
   // Fetch members and messages
-  const rawMembers = useQuery(api.conversations.getConversationMembers, { conversationId: conversationId as any }) || [];
-  const messages = useQuery(api.messages.getMessages, { conversationId: conversationId as any }) || [];
+  const rawMembers = useQuery(api.conversations.getConversationMembers, { conversationId: validId }) || [];
+  const messages = useQuery(api.messages.getMessages, { conversationId: validId }) || [];
   
   const mediaMsgs = messages.filter((m: any) => m.fileUrl);
   const linkMsgs = messages.filter((m: any) => m.body && (m.body.includes("http://") || m.body.includes("https://")));
