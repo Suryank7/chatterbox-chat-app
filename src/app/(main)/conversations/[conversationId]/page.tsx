@@ -62,8 +62,8 @@ export default function ConversationPage() {
     conversationId: conversationId as any,
     clerkId: user?.id 
   });
-  const messages = useQuery(api.messages.getMessages, { conversationId });
-  const typingUsers = useQuery(api.conversations.getTypingUsers, { conversationId });
+  const messages = useQuery(api.messages.getMessages, { conversationId: conversationId as any });
+  const typingUsers = useQuery(api.conversations.getTypingUsers, { conversationId: conversationId as any });
   const currentUser = useQuery(api.users.getUser, { clerkId: user?.id || "" });
 
   // Mutations
