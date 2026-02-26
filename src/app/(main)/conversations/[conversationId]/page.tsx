@@ -1,5 +1,5 @@
 "use client";
-// Force rebuild v3
+// Force rebuild v4
 
 import { useMutation, useQuery } from "convex/react";
 // @ts-ignore
@@ -19,7 +19,8 @@ import {
   Copy, 
   Smile,
   Paperclip,
-  Image as ImageIcon
+  Image as ImageIcon,
+  MessageSquare
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
